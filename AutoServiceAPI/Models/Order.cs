@@ -17,7 +17,7 @@ namespace AutoServiceAPI.Models
 
         // Зв'язок з автомобілем (одне замовлення - одне авто)
         public int CarId { get; set; }
-        public virtual Car Car { get; set; }
+        public virtual Car? Car { get; set; }
 
         // Зв'язок з послугами (одне замовлення - багато послуг)
         public virtual ICollection<OrderService> OrderServices { get; set; }
