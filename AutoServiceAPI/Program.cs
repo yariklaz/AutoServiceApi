@@ -25,6 +25,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseDefaultFiles(); // [cite: 52]
+app.UseStaticFiles();  // [cite: 54]
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
