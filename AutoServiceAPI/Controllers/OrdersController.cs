@@ -24,14 +24,26 @@ namespace AutoServiceAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders
+                .Include(o => o.Car)
+                // Підтягуємо проміжну таблицю
+                .Include(o => o.OrderServices)
+                    // А з неї підтягуємо саму інформацію про послугу (назву, ціну)
+                    .ThenInclude(os => os.Service)
+                .ToListAsync();
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.Orders
+                .Include(o => o.Car)
+                // Підтягуємо проміжну таблицю
+                .Include(o => o.OrderServices)
+                    // А з неї підтягуємо саму інформацію про послугу (назву, ціну)
+                    .ThenInclude(os => os.Service)
+                .FirstOrDefaultAsync(o => o.Id == id);
 
             if (order == null)
             {

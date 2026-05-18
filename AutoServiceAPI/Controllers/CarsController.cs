@@ -24,14 +24,19 @@ namespace AutoServiceAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Car>>> GetCars()
         {
-            return await _context.Cars.ToListAsync();
+            // Використовуємо Method Syntax для підтягування замовлень автомобіля
+            return await _context.Cars
+                .Include(c => c.Orders)
+                .ToListAsync();
         }
 
         // GET: api/Cars/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Car>> GetCar(int id)
         {
-            var car = await _context.Cars.FindAsync(id);
+            var car = await _context.Cars
+                .Include(c => c.Orders)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             if (car == null)
             {
