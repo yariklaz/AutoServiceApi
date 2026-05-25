@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoServiceAPI.Models
 {
@@ -21,6 +22,9 @@ namespace AutoServiceAPI.Models
 
         // Зв'язок з послугами (одне замовлення - багато послуг)
         public virtual ICollection<OrderService> OrderServices { get; set; }
+
+        [NotMapped]
+        public List<int>? SelectedServiceIds { get; set; }
 
         public Order()
         {

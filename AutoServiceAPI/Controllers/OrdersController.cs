@@ -95,8 +95,26 @@ namespace AutoServiceAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
+            // 1. Спочатку зберігаємо саме замовлення в базу, щоб SQL Server згенерував для нього Id
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
+
+            // 2. Якщо клієнт передав список послуг, обробляємо його
+            if (order.SelectedServiceIds != null && order.SelectedServiceIds.Any())
+            {
+                // Формуємо список записів для проміжної таблиці за допомогою Method Syntax
+                var orderServices = order.SelectedServiceIds
+                    .Select(serviceId => new OrderService
+                    {
+                        OrderId = order.Id,       // Id щойно створеного замовлення
+                        ServiceId = serviceId     // Id послуги з масиву
+                    })
+                    .ToList();
+
+                // Додаємо всі вибрані послуги в базу однією командою
+                _context.OrderServices.AddRange(orderServices);
+                await _context.SaveChangesAsync();
+            }
 
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }

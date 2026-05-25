@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoServiceAPI", "AutoServiceAPI\AutoServiceAPI.csproj", "{731E6EFE-7E43-40E1-B137-06A6C15BC549}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService.Tests", "AutoService.Tests\AutoService.Tests.csproj", "{F194C364-B031-4351-9724-05939B70E8A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{731E6EFE-7E43-40E1-B137-06A6C15BC549}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{731E6EFE-7E43-40E1-B137-06A6C15BC549}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{731E6EFE-7E43-40E1-B137-06A6C15BC549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F194C364-B031-4351-9724-05939B70E8A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F194C364-B031-4351-9724-05939B70E8A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F194C364-B031-4351-9724-05939B70E8A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F194C364-B031-4351-9724-05939B70E8A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
